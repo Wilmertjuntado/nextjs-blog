@@ -148,7 +148,7 @@ const BASE_URL =
   "https://nextjs-blog-pied-xi-93.vercel.app/";
 
 const PAGE_URL = `${BASE_URL}/blog/${SLUG}`;
-const OG_URL = `${BASE_URL}/blog/${SLUG}/opengraph-image`;
+const OG_URL =  `${BASE_URL}/og-storytelling.png`;
 
 
 export const metadata: Metadata = {
