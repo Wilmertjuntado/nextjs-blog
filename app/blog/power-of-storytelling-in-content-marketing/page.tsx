@@ -182,6 +182,37 @@ export const metadata: Metadata = {
   },
 };
 
+const PUBLISHED_DATE = "2026-02-11"; // YYYY-MM-DD (update if needed)
+const UPDATED_DATE = "2026-02-11";   // same as above if no updates
+
+function getJsonLd() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: "The Power of Storytelling in Content Marketing",
+    description:
+      "Learn how storytelling transforms content marketing, builds emotional connections, and helps brands stand out in a crowded digital world.",
+    image: [OG_URL],
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": PAGE_URL,
+    },
+    author: {
+      "@type": "Person",
+      name: "Wilmer Juntado",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "Wilmer’s Blog",
+      logo: {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/author.jpg`,
+      },
+    },
+    datePublished: PUBLISHED_DATE,
+    dateModified: UPDATED_DATE,
+  };
+}
 
 
 
@@ -190,6 +221,11 @@ export default function Page() {
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-14">
+        <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(getJsonLd()) }}
+/>
+
       <header className="border-b border-slate-200 pb-8">
         <p className="text-sm font-medium text-slate-600">
           Content Marketing • Storytelling
