@@ -175,11 +175,9 @@ export default function Page() {
   const { minutes } = readingTimeFromText(ARTICLE_TEXT);
 
   return (
+    
     <main className="mx-auto max-w-3xl px-6 py-14">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      
 
       <header className="border-b border-slate-200 pb-8">
         <p className="text-sm font-medium text-slate-600">Content Marketing • Storytelling</p>
