@@ -1,10 +1,6 @@
 import { getPostBySlug } from "../posts";
 import type { Metadata } from "next";
-
-
-
 import Image from "next/image";
-
 import Link from "next/link";
 
 function Badge({ children }: { children: React.ReactNode }) {
@@ -145,17 +141,47 @@ Conclusion
 Storytelling helps your content stand out, feel human, and drive action. Start with why, frame the conflict your audience faces, and guide them toward a clear resolution.
 `;
 
-const POST = getPostBySlug("power-of-storytelling-in-content-marketing");
-const SLUG_PATH = `/blog/${POST.slug}`;
+const SLUG = "power-of-storytelling-in-content-marketing";
+const POST = getPostBySlug(SLUG);
+
+const BASE_URL =
+  "https://nextjs-blog-pied-xi-93.vercel.app/";
+
+const PAGE_URL = `${BASE_URL}/blog/${SLUG}`;
+const OG_URL = `${BASE_URL}/blog/${SLUG}/opengraph-image`;
 
 
 export const metadata: Metadata = {
   title: `${POST.title}${POST.subtitle ? " " + POST.subtitle : ""} (With Examples)`,
   description: POST.description,
+
   alternates: {
-    canonical: SLUG_PATH,
+    canonical: PAGE_URL,
+  },
+
+  openGraph: {
+    title: `${POST.title}${POST.subtitle ? " " + POST.subtitle : ""}`,
+    description: POST.description,
+    url: PAGE_URL,
+    siteName: "Wilmer's Blog",
+    type: "article",
+    images: [
+      {
+        url: OG_URL,
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: `${POST.title}${POST.subtitle ? " " + POST.subtitle : ""}`,
+    description: POST.description,
+    images: [OG_URL],
   },
 };
+
 
 
 
