@@ -150,6 +150,25 @@ const BASE_URL =
 const PAGE_URL = `${BASE_URL}/blog/${SLUG}`;
 const OG_URL =  `${BASE_URL}/og-storytelling.png`;
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: POST.title,
+  description: POST.description,
+  image: OG_URL,
+  author: {
+    "@type": "Person",
+    name: "Wilmer Juntado",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Wilmer's Blog",
+  },
+  datePublished: POST.publishedDate,
+  dateModified: POST.publishedDate,
+  mainEntityOfPage: PAGE_URL,
+};
+
 
 export const metadata: Metadata = {
   title: `${POST.title}${POST.subtitle ? " " + POST.subtitle : ""} (With Examples)`,
@@ -219,12 +238,14 @@ function getJsonLd() {
 export default function Page() {
     const { minutes } = readingTimeFromText(ARTICLE_TEXT);
 
-  return (
-    <main className="mx-auto max-w-3xl px-6 py-14">
-        <script
+  
+     return (
+  <main className="mx-auto max-w-3xl px-6 py-14">
+    <script
   type="application/ld+json"
-  dangerouslySetInnerHTML={{ __html: JSON.stringify(getJsonLd()) }}
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
 />
+
 
       <header className="border-b border-slate-200 pb-8">
         <p className="text-sm font-medium text-slate-600">
