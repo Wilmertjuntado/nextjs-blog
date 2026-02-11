@@ -1,3 +1,4 @@
+
 import { getPostBySlug } from "../posts";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -106,7 +107,7 @@ const POST = getPostBySlug(SLUG);
 const BASE_URL = "https://nextjs-blog-pied-xi-93.vercel.app";
 
 const PAGE_URL = `${BASE_URL}/blog/${SLUG}`;
-const OG_URL = `${BASE_URL}/og-storytelling.png`;
+const OG_URL = `${BASE_URL}/hero-storytelling.png`;
 
 /**
  * ✅ FIX 2: Use ONE JSON-LD object only (delete getJsonLd + extra dates)
@@ -178,6 +179,16 @@ export default function Page() {
     
     <main className="mx-auto max-w-3xl px-6 py-14">
       
+      <div className="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+  <Image
+    src="/hero-storytelling.png"
+    alt="The Power of Storytelling in Content Marketing"
+    width={1200}
+    height={630}
+    priority
+    className="h-auto w-full"
+  />
+</div>
 
       <header className="border-b border-slate-200 pb-8">
         <p className="text-sm font-medium text-slate-600">Content Marketing • Storytelling</p>
