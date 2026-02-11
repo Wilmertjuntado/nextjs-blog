@@ -92,14 +92,12 @@ function readingTimeFromText(text: string) {
 }
 
 // Put your article text here (plain text only).
-const ARTICLE_TEXT = `
-The Power of Storytelling in Content Marketing
-
-Storytelling isn’t just creativity—it’s strategy. Here’s how to use proven story frameworks to make your content memorable, relatable, and action-driven.
-`;
 
 const SLUG = "power-of-storytelling-in-content-marketing";
+import { notFound } from "next/navigation";
+
 const POST = getPostBySlug(SLUG);
+if (!POST) notFound();
 
 /**
  * ✅ FIX 1: remove trailing slash
@@ -173,11 +171,17 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  const { minutes } = readingTimeFromText(ARTICLE_TEXT);
+  const { minutes } = readingTimeFromText(POST.contentPlainText ?? "");
+
 
   return (
     
     <main className="mx-auto max-w-3xl px-6 py-14">
+      <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+/>
+
       
       <div className="mb-8 overflow-hidden rounded-2xl border border-slate-200 bg-white">
   <Image
@@ -194,7 +198,7 @@ export default function Page() {
         <p className="text-sm font-medium text-slate-600">Content Marketing • Storytelling</p>
 
         <h1 className="mt-2 text-4xl font-bold tracking-tight text-slate-900">
-          The Power of Storytelling in Content Marketing
+          {POST.title}
         </h1>
 
         <p className="mt-3 text-sm text-slate-600">
@@ -230,6 +234,16 @@ export default function Page() {
             people, and transformation: what changes before vs. after.
           </p>
         </section>
+        <div className="my-12">
+    <Image
+      src="/storytelling-framework.png"
+      alt="Golden Circle and Storytelling Framework Diagram"
+      width={1600}
+      height={800}
+      className="w-full h-auto rounded-2xl shadow-md"
+      priority
+    />
+  </div>
 
         {/* keep the rest of your sections as-is */}
       </article>

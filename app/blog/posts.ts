@@ -4,7 +4,9 @@ export type BlogPost = {
   subtitle?: string;
   description: string;
   publishedDate: string;
+  contentPlainText: string; // ✅ add this
 };
+
 
 export const POSTS: BlogPost[] = [
   {
@@ -13,7 +15,17 @@ export const POSTS: BlogPost[] = [
     subtitle: "in Content Marketing",
     description:
       "Learn how storytelling transforms content marketing, builds emotional connections, and helps brands stand out in a crowded digital world.",
-    publishedDate: "Feb 11, 2026",
+    publishedDate: "2026-02-11", // ✅ change to ISO format (important for SEO)
+
+    contentPlainText: `
+      Storytelling isn’t just creativity—it’s strategy.
+      It builds emotional connection and helps brands stand out.
+      When businesses communicate through narrative,
+      they create meaning instead of just delivering information.
+      Strong storytelling focuses on transformation:
+      what changes before and after.
+      This shift increases engagement, trust, and conversions.
+    `,
   },
 ];
 
